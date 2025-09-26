@@ -1,0 +1,30 @@
+# Ignore everything by default
+*
+
+# Except these files/folders
+!.gitignore
+!src/
+!src/ArrayPrograms/
+!src/BinarySearch/
+
+# Ignore all files inside src/ except ArrayPrograms and BinarySearch folders
+src/*/*
+!src/ArrayPrograms/**
+!src/BinarySearch/**
+
+# IntelliJ IDEA files
+.idea/
+*.iml
+
+# Java compiled files
+*.class
+
+# Build output folders
+out/
+build/
+target/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
