@@ -1,6 +1,6 @@
 package BinarySearch;
 
-public class Q10_FindElementInMountainArray {
+public class Qn10_FindElementInMountainArray {
     static int SearchElement(int[] arr, int target){
         int peak=SearchPeak(arr);
 
