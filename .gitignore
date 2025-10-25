@@ -6,6 +6,7 @@
 !src/
 !src/ArrayPrograms/
 !src/BinarySearch/
+!src/BinarySearchOn2DArrays
 
 # Ignore all files inside src/ except ArrayPrograms and BinarySearch folders
 src/*/*
