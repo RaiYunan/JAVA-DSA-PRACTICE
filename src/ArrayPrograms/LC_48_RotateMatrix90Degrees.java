@@ -1,7 +1,19 @@
 package ArrayPrograms;
 
 public class LC_48_RotateMatrix90Degrees {
-    static void rotate(int[][] matrix){
+    /*
+     * LeetCode 48 - Rotate Image
+     * Rotate an n x n 2D matrix by 90 degrees (clockwise) in-place.
+
+     * Approach:
+     * 1. Transpose the matrix (swap matrix[i][j] with matrix[j][i])
+     * 2. Reverse each row
+
+     * Time Complexity: O(n²) where n is the matrix dimension
+     * Space Complexity: O(1) in-place rotation
+     */
+
+    static void rotate(int[][] matrix) {
         int n = matrix.length;
 
         // Step 1: Transpose the matrix
@@ -24,5 +36,31 @@ public class LC_48_RotateMatrix90Degrees {
                 right--;
             }
         }
+    }
+
+    static void printMatrix(int[][] matrix) {
+
+        for (int[] row : matrix) {
+            for (int value : row) {
+                System.out.printf("%3d", value);
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        int[][] matrix = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+
+        System.out.println("Original Matrix:");
+        printMatrix(matrix);
+
+        rotate(matrix);
+
+        System.out.println("\nRotated Matrix (90° clockwise):");
+        printMatrix(matrix);
     }
 }
