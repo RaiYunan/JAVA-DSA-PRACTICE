@@ -4,51 +4,61 @@ import java.util.List;
 
 public class LC_54_SpiralMatrix {
 
-    public List<Integer> spiralOrder(int[][] matrix) {
-        List<Integer> res = new ArrayList<>();
-        if (matrix.length == 0) return res;
+    static List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> result = new ArrayList<>();
 
-        int rowBegin = 0, rowEnd = matrix.length - 1;
-        int colBegin = 0, colEnd = matrix[0].length - 1;
+        if (matrix == null || matrix.length == 0) {
+            return result;
+        }
 
-        while (rowBegin <= rowEnd && colBegin <= colEnd) {
-            // Right
-            for (int j = colBegin; j <= colEnd; j++)
-                res.add(matrix[rowBegin][j]);
-            rowBegin++;
+        int top = 0;
+        int bottom = matrix.length - 1;
+        int left = 0;
+        int right = matrix[0].length - 1;
 
-            // Down
-            for (int j = rowBegin; j <= rowEnd; j++)
-                res.add(matrix[j][colEnd]);
-            colEnd--;
+        while (top <= bottom && left <= right) {
 
-            // Left
-            if (rowBegin <= rowEnd) {
-                for (int j = colEnd; j >= colBegin; j--)
-                    res.add(matrix[rowEnd][j]);
-                rowEnd--;
+            // 1. Left to Right
+            for (int col = left; col <= right; col++) {
+                result.add(matrix[top][col]);
+            }
+            top++;
+
+            // 2. Top to Bottom
+            for (int row = top; row <= bottom; row++) {
+                result.add(matrix[row][right]);
+            }
+            right--;
+
+            // 3. Right to Left
+            if (top <= bottom) {
+                for (int col = right; col >= left; col--) {
+                    result.add(matrix[bottom][col]);
+                }
+                bottom--;
             }
 
-            // Up
-            if (colBegin <= colEnd) {
-                for (int j = rowEnd; j >= rowBegin; j--)
-                    res.add(matrix[j][colBegin]);
-                colBegin++;
+            // 4. Bottom to Top
+            if (left <= right) {
+                for (int row = bottom; row >= top; row--) {
+                    result.add(matrix[row][left]);
+                }
+                left++;
             }
         }
 
-        return res;
+        return result;
     }
 
     public static void main(String[] args){
-        LC_54_SpiralMatrix solution = new LC_54_SpiralMatrix();
+
 
         int[][] matrix1 = {
                 {1, 2, 3},
                 {4, 5, 6},
                 {7, 8, 9}
         };
-        System.out.println("Test 1 (3x3): " + solution.spiralOrder(matrix1));
+        System.out.println("Test 1 (3x3): " + spiralOrder(matrix1));
 
 
         int[][] matrix2 = {
@@ -56,7 +66,7 @@ public class LC_54_SpiralMatrix {
                 {5, 6, 7, 8},
                 {9, 10, 11, 12}
         };
-        System.out.println("Test 2 (3x4): " + solution.spiralOrder(matrix2));
+        System.out.println("Test 2 (3x4): " +spiralOrder(matrix2));
 
         int[][] matrix3 = {
                 {1, 2, 3},
@@ -64,17 +74,17 @@ public class LC_54_SpiralMatrix {
                 {7, 8, 9},
                 {10, 11, 12}
         };
-        System.out.println("Test 3 (4x3): " + solution.spiralOrder(matrix3));
+        System.out.println("Test 3 (4x3): " + spiralOrder(matrix3));
 
 
         int[][] matrix4 = {{1, 2, 3, 4, 5}};
-        System.out.println("Test 4 (1x5): " + solution.spiralOrder(matrix4));
+        System.out.println("Test 4 (1x5): " + spiralOrder(matrix4));
 
         int[][] matrix5 = {{1}, {2}, {3}, {4}};
-        System.out.println("Test 5 (4x1): " + solution.spiralOrder(matrix5));
+        System.out.println("Test 5 (4x1): " + spiralOrder(matrix5));
 
         int[][] matrix6 = {};
-        System.out.println("Test 6 (Empty): " + solution.spiralOrder(matrix6));
+        System.out.println("Test 6 (Empty): " + spiralOrder(matrix6));
 
     }
 }
