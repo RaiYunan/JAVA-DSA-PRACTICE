@@ -9,6 +9,7 @@
 !src/BinarySearchOn2DArrays/
 !src/StringPrograms/
 !src/SortingTechniques/
+!src/BitManipulation
 
 
 # Ignore all files inside src/ except ArrayPrograms and BinarySearch folders
@@ -18,6 +19,7 @@ src/*/*
 !src/BinarySearchOn2DArrays/**
 !src/StringPrograms/**
 !src/SortingTechniques/**
+!src/BitManipulation/**
 
 # IntelliJ IDEA files
 .idea/
