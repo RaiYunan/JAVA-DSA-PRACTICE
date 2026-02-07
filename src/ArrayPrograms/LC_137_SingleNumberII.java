@@ -26,24 +26,46 @@ public class LC_137_SingleNumberII {
         return result;
     }
 
-        static int singleNumber(int[] nums) {
-            Arrays.sort(nums);
-            int n = nums.length;
+    static int singleNumber(int[] nums) {
+        Arrays.sort(nums);
+        int n = nums.length;
 
 
-            for (int i = 0; i < n - 1; i += 3) {
-                if (nums[i] != nums[i + 1]) {
-                    return nums[i];
+        for (int i = 0; i < n - 1; i += 3) {
+            if (nums[i] != nums[i + 1]) {
+                return nums[i];
+            }
+        }
+
+
+        return nums[n - 1];
+    }
+
+    //most optimal solution
+    static int singleNumber2(int[] nums) {
+        int result = 0;
+        for (int bit = 0; bit < 32; bit++) {
+            int count = 0;
+
+            for (int num : nums) {
+                if (((num >> bit) & 1) == 1) {
+                    count++;
                 }
             }
 
 
-            return nums[n - 1];
+            if (count % 3 != 0) {
+                result |= (1 << bit);
+            }
         }
 
-        public static void main(String[] args){
-            int[] arr={2,2,1,2};
-            System.out.println(singleNumber(arr));
-            System.out.println(singleNumber1(arr));
-        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {2, 2, 1, 2};
+        System.out.println(singleNumber(arr));
+        System.out.println(singleNumber1(arr));
+        System.out.println(singleNumber2(arr));
+    }
 }
