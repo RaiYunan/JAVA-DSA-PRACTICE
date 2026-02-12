@@ -32,10 +32,20 @@ public class LC191_NumberOf1Bits {
 
         return count;
     }
+    /**
+     * Recursive version of Kernighan's algorithm
+     * Time: O(k) - k = number of set bits
+     * Space: O(k) - recursion stack
+     */
+    static int hammingWeight3(int n) {
+        if (n == 0) return 0;
+        return 1 + hammingWeight3(n & (n - 1));
+    }
 
     public static void main(String[] args) {
         int num1 = 128; // binary: 10000000
         System.out.println(hammingWeight(num1)); // Output: 1
         System.out.println(hammingWeight2(num1));
+        System.out.println(hammingWeight3(num1));
     }
 }
