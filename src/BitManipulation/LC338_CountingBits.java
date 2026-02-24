@@ -32,8 +32,20 @@ public class LC338_CountingBits {
 
         return count;
     }
+
+    // Best Solution: Dynamic Programming with Offset
+    static int[] countBits1(int n) {
+        int[] dp = new int[n + 1];
+
+        for (int i = 1; i <= n; i++) {
+            dp[i] = dp[i >> 1] + (i & 1);
+        }
+
+        return dp;
+    }
     void main(){
         int n=3;
         System.out.println(Arrays.toString(countBits(n)));
+        System.out.println(Arrays.toString(countBits1(n)));
     }
 }
