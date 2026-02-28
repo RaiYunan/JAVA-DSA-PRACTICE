@@ -1,6 +1,6 @@
 package BitManipulation;
 
-public class LC220_MinimumBitsFlips {
+public class LC2220_MinimumBitsFlips {
     static int minBitFlips(int start,int goal){
         int steps=start^goal;
         int count=0;
