@@ -11,6 +11,7 @@
 !src/SortingTechniques/
 !src/BitManipulation/
 !src/Recursion/
+!src/Stack/
 
 
 # Ignore all files inside src/ except ArrayPrograms and BinarySearch folders
@@ -22,6 +23,7 @@ src/*/*
 !src/SortingTechniques/**
 !src/BitManipulation/**
 !src/Recursion/**
+!src/Stack/**
 
 # IntelliJ IDEA files
 .idea/
