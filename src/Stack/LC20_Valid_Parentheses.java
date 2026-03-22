@@ -3,7 +3,7 @@ package Stack;
 import java.util.Stack;
 
 public class LC20_Valid_Parentheses {
-    static boolean isValid(String s) {
+    static boolean isValid1(String s) {
         Stack<Character> stack = new Stack<>();
 
         for (char c : s.toCharArray()) {
@@ -21,10 +21,32 @@ public class LC20_Valid_Parentheses {
 
         return stack.isEmpty();
     }
-    void main(){
-        String s1="()[]{}";
-        String s2="([)]";
-        System.out.println(isValid(s1));
-        System.out.println(isValid(s2));
+
+
+    static boolean isValid2(String s) {
+
+        char[] stack = new char[s.length()];
+        int top = -1;
+
+        for (char ch : s.toCharArray()) {
+
+            if (ch == '(') stack[++top] = ')';
+            else if (ch == '{') stack[++top] = '}';
+            else if (ch == '[') stack[++top] = ']';
+            else {
+                if (top == -1 || stack[top--] != ch) {
+                    return false;
+                }
+            }
+        }
+
+        return top == -1;
+    }
+
+    void main() {
+        String s1 = "()[]{}";
+        String s2 = "([)]";
+        System.out.println(isValid1(s1));
+        System.out.println(isValid2(s2));
     }
 }
