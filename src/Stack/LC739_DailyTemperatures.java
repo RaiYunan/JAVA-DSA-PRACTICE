@@ -1,6 +1,7 @@
 package Stack;
 
 import java.util.Arrays;
+import java.util.Stack;
 
 public class LC739_DailyTemperatures {
     static int[] dailyTemperaturesBruteForce(int[] temperatures) {
@@ -17,8 +18,34 @@ public class LC739_DailyTemperatures {
         }
         return result;
     }
+
+
+
+    static int[] dailyTemperatures(int[] temperatures) {//most optimal solution
+
+            int n = temperatures.length;
+            int[] ans = new int[n];
+
+            Stack<Integer> stack = new Stack<>();
+
+            for (int i = 0; i < n; i++) {
+
+                while (!stack.isEmpty() &&
+                        temperatures[i] > temperatures[stack.peek()]) {
+
+                    int prevIndex = stack.pop();
+                    ans[prevIndex] = i - prevIndex;
+                }
+
+                stack.push(i);
+            }
+
+            return ans;
+        }
+
     void main(){
         int[] temperatures={73,74,75,71,69,72,76,73};
         System.out.println(Arrays.toString(dailyTemperaturesBruteForce(temperatures)));
+        System.out.println(Arrays.toString(dailyTemperatures(temperatures)));
     }
 }
