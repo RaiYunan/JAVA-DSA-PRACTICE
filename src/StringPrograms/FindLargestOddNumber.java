@@ -13,6 +13,18 @@ public class FindLargestOddNumber {
         // No odd number found
         return "";
     }
+    static String largestOddNumberBruteForce(String num){
+        String ans="";
+        for(int i=0;i<num.length();i++){
+            String temp=num.substring(0,i+1);
+            char lastChar=temp.charAt(temp.length()-1);
+
+            if((lastChar-'0')%2!=0){
+                ans=temp;
+            }
+        }
+        return ans;
+    }
 
     public static void main(String[] args) {
         String num1 = "52";
@@ -22,5 +34,6 @@ public class FindLargestOddNumber {
         System.out.println(largestOddNumber(num1)); // Output: 5
         System.out.println(largestOddNumber(num2)); // Output: (empty string)
         System.out.println(largestOddNumber(num3)); // Output: 35427
+        System.out.println(largestOddNumberBruteForce(num3));
     }
 }
