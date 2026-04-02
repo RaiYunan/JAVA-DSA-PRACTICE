@@ -12,6 +12,7 @@
 !src/BitManipulation/
 !src/Recursion/
 !src/Stack/
+!src/LinkedList/
 
 
 # Ignore all files inside src/ except ArrayPrograms and BinarySearch folders
@@ -24,6 +25,7 @@ src/*/*
 !src/BitManipulation/**
 !src/Recursion/**
 !src/Stack/**
+!src/LinkedList/**
 
 # IntelliJ IDEA files
 .idea/
