@@ -1,6 +1,6 @@
 package LinkedList;
 
-public class LC878_MIddleOfTheLInkedList {
+public class LC876_MIddleOfTheLInkedList {
     static class ListNode {
         int val;
         ListNode next;
