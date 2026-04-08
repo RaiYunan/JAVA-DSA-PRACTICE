@@ -19,25 +19,26 @@ public class LC876_MIddleOfTheLInkedList {
     }
 
     static ListNode middleNode(ListNode head) {
-        int count=0;
-        ListNode current=head;
-        while(current!=null){
-            count++;
-            current=current.next;
-        }
-        int length=(int) Math.ceil((count+1)/2.0);
+        int count = 0;
+        ListNode current = head;
 
-        current=head;
-        ListNode midNode=null;
-        count=0;
-        while(current!=null){
+        // First pass: count nodes
+        while (current != null) {
             count++;
-            if(count==length){
-                midNode=current;
-            }
-            current=current.next;
+            current = current.next;
         }
-        return midNode;
+
+        System.out.printf("Length of Node : %d\n",count);
+        int middle = (count / 2) + 1;
+        System.out.printf("Middle Node is %d\n",middle);
+
+        // Second pass: reach middle node
+        current = head;
+        for (int i = 1; i < middle; i++) {
+            current = current.next;
+        }
+
+        return current;
     }
 
     static void printList(ListNode head){
