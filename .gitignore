@@ -13,6 +13,7 @@
 !src/Recursion/
 !src/Stack/
 !src/LinkedList/
+!src/UniqueLCProblems/
 
 
 # Ignore all files inside src/ except ArrayPrograms and BinarySearch folders
@@ -26,6 +27,7 @@ src/*/*
 !src/Recursion/**
 !src/Stack/**
 !src/LinkedList/**
+!src/UniqueLCProblems/**
 
 # IntelliJ IDEA files
 .idea/
