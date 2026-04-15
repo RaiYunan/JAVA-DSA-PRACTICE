@@ -14,7 +14,7 @@
 !src/Stack/
 !src/LinkedList/
 !src/UniqueLCProblems/
-
+!src/BinaryTrees/
 
 # Ignore all files inside src/ except ArrayPrograms and BinarySearch folders
 src/*/*
@@ -28,6 +28,7 @@ src/*/*
 !src/Stack/**
 !src/LinkedList/**
 !src/UniqueLCProblems/**
+!src/BinaryTrees/**
 
 # IntelliJ IDEA files
 .idea/
