@@ -3,7 +3,7 @@ package BinaryTrees;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LC94BTInorderTraversal {
+public class LC94_BTInorderTraversal {
     public class TreeNode {
       int val;
       TreeNode left;
