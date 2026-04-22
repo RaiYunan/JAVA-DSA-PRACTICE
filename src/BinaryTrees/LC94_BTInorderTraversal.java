@@ -2,6 +2,7 @@ package BinaryTrees;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class LC94_BTInorderTraversal {
     public class TreeNode {
@@ -17,11 +18,33 @@ public class LC94_BTInorderTraversal {
       }
   }
 
-        public List<Integer> inorderTraversal(TreeNode root) {
+        public List<Integer> inorderTraversal1(TreeNode root) {
             List<Integer> res = new ArrayList<>();
             helper(root, res);
             return res;
         }
+
+    public List<Integer> inorderTraversal2(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode curr = root;
+
+        while (curr != null || !stack.isEmpty()) {
+            while (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
+            }
+
+
+            curr = stack.pop();
+            result.add(curr.val);
+
+
+            curr = curr.right;
+        }
+
+        return result;
+    }
 
         private void helper(TreeNode root, List<Integer> res) {
             if (root != null) {
