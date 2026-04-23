@@ -5,27 +5,33 @@ import java.util.List;
 import java.util.Stack;
 
 public class LC94_BTInorderTraversal {
-    public class TreeNode {
-      int val;
-      TreeNode left;
-      TreeNode right;
-      TreeNode() {}
-      TreeNode(int val) { this.val = val; }
-      TreeNode(int val, TreeNode left, TreeNode right) {
-          this.val = val;
-          this.left = left;
-          this.right = right;
-      }
-  }
 
-        public List<Integer> inorderTraversal1(TreeNode root) {
-            List<Integer> res = new ArrayList<>();
-            helper(root, res);
-            return res;
+    static class TreeNode {
+        int val;
+        TreeNode left, right;
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val; this.left = left; this.right = right;
         }
+    }
 
-    public List<Integer> inorderTraversal2(TreeNode root) {
-        List<Integer> result = new ArrayList<>();
+    // Approach 1: Recursive
+    static List<Integer> inorderRecursive(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        dfs(root, res);
+        return res;
+    }
+
+    static void dfs(TreeNode node, List<Integer> res) {
+        if (node == null) return;
+        dfs(node.left, res);
+        res.add(node.val);
+        dfs(node.right, res);
+    }
+
+    // Approach 2: Iterative
+    static List<Integer> inorderIterative(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();
         TreeNode curr = root;
 
@@ -34,24 +40,27 @@ public class LC94_BTInorderTraversal {
                 stack.push(curr);
                 curr = curr.left;
             }
-
-
             curr = stack.pop();
-            result.add(curr.val);
-
-
+            res.add(curr.val);
             curr = curr.right;
         }
 
-        return result;
+        return res;
     }
 
-        private void helper(TreeNode root, List<Integer> res) {
-            if (root != null) {
-                helper(root.left, res);  // Left
-                res.add(root.val);       // Root
-                helper(root.right, res); // Right
-            }
-        }
+     void main() {
+        //       tree:   1
+        //                \
+        //                 2
+        //                /
+        //               3
+        // Expected inorder: [1, 3, 2]
+        TreeNode root = new TreeNode(1,
+                null,
+                new TreeNode(2, new TreeNode(3), null)
+        );
 
+        System.out.println("Recursive : " + inorderRecursive(root));
+        System.out.println("Iterative : " + inorderIterative(root));
+    }
 }
