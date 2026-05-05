@@ -1,5 +1,8 @@
 package BinaryTrees;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class LC101_SymmetricTree {
 
     static class TreeNode {
@@ -11,7 +14,8 @@ public class LC101_SymmetricTree {
         }
     }
 
-    static boolean isSymmetric(TreeNode root) {
+    // Approach 1: Recursive
+    static boolean isSymmetricRecursive(TreeNode root) {
         return root == null || isMirror(root.left, root.right);
     }
 
@@ -21,6 +25,29 @@ public class LC101_SymmetricTree {
         return (left.val == right.val)
                 && isMirror(left.left, right.right)
                 && isMirror(left.right, right.left);
+    }
+
+    // Approach 2: Iterative (BFS)
+    static boolean isSymmetricIterative(TreeNode root) {
+        if (root == null) return true;
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root.left);
+        queue.offer(root.right);
+
+        while (!queue.isEmpty()) {
+            TreeNode left  = queue.poll();
+            TreeNode right = queue.poll();
+
+            if (left == null && right == null) continue;
+            if (left == null || right == null) return false;
+            if (left.val != right.val)         return false;
+
+            queue.offer(left.left);  queue.offer(right.right);
+            queue.offer(left.right); queue.offer(right.left);
+        }
+
+        return true;
     }
 
     void main() {
@@ -44,7 +71,9 @@ public class LC101_SymmetricTree {
                 new TreeNode(2, null, new TreeNode(3))
         );
 
-        System.out.println("Symmetric : " + isSymmetric(symmetric));  // true
-        System.out.println("Asymmetric: " + isSymmetric(asymmetric)); // false
+        System.out.println("Recursive  symmetric : " + isSymmetricRecursive(symmetric));   // true
+        System.out.println("Recursive  asymmetric: " + isSymmetricRecursive(asymmetric));  // false
+        System.out.println("Iterative  symmetric : " + isSymmetricIterative(symmetric));   // true
+        System.out.println("Iterative  asymmetric: " + isSymmetricIterative(asymmetric));  // false
     }
 }
