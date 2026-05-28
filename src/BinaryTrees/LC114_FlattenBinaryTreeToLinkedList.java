@@ -1,5 +1,8 @@
 package BinaryTrees;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LC114_FlattenBinaryTreeToLinkedList {
 
     static class TreeNode {
@@ -11,6 +14,24 @@ public class LC114_FlattenBinaryTreeToLinkedList {
         }
     }
 
+    // Approach 1: Brute Force (preorder into list)
+    static void flattenBruteForce(TreeNode root) {
+        List<TreeNode> list = new ArrayList<>();
+        preorder(root, list);
+        for (int i = 0; i < list.size() - 1; i++) {
+            list.get(i).left  = null;
+            list.get(i).right = list.get(i + 1);
+        }
+    }
+
+    static void preorder(TreeNode node, List<TreeNode> list) {
+        if (node == null) return;
+        list.add(node);
+        preorder(node.left,  list);
+        preorder(node.right, list);
+    }
+
+    // Approach 2: Morris Traversal (in-place)
     static void flatten(TreeNode root) {
         TreeNode curr = root;
         while (curr != null) {
@@ -32,18 +53,18 @@ public class LC114_FlattenBinaryTreeToLinkedList {
     }
 
     void main() {
-        //       1
-        //      / \
-        //     2   5
-        //    / \   \
-        //   3   4   6
-
-        TreeNode root = new TreeNode(1,
+        TreeNode root1 = new TreeNode(1,
                 new TreeNode(2, new TreeNode(3), new TreeNode(4)),
                 new TreeNode(5, null, new TreeNode(6))
         );
+        flatten(root1);
+        System.out.println("Morris : " + print(root1)); // 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
-        flatten(root);
-        System.out.println(print(root)); // 1 -> 2 -> 3 -> 4 -> 5 -> 6
+        TreeNode root2 = new TreeNode(1,
+                new TreeNode(2, new TreeNode(3), new TreeNode(4)),
+                new TreeNode(5, null, new TreeNode(6))
+        );
+        flattenBruteForce(root2);
+        System.out.println("Brute  : " + print(root2)); // 1 -> 2 -> 3 -> 4 -> 5 -> 6
     }
 }
