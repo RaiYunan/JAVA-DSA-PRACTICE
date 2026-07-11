@@ -1,6 +1,7 @@
 package ArrayPrograms;
 
 
+import java.util.HashMap;
 
 public class LC219_ContainsDuplicateII {
 
@@ -16,10 +17,34 @@ public class LC219_ContainsDuplicateII {
         return false;
     }
 
+    /*
+     * sliding window hashmap: track last seen index of each number
+     * 1. store each num's last index in map
+     * 2. if num seen before and index diff <= k, return true
+     * 3. update map with current index
+     *
+     * sliding window + hashmap
+     * O(n) time, O(k) space
+     */
+    static boolean containsNearbyDuplicate(int[] nums, int k) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(nums[i]) && i - map.get(nums[i]) <= k) return true;
+            map.put(nums[i], i);
+        }
+        return false;
+    }
+
 
     void main() {
         System.out.println(containsNearbyDuplicateBruteForce(new int[]{1, 2, 3, 1}, 3));       // true
         System.out.println(containsNearbyDuplicateBruteForce(new int[]{1, 0, 1, 1}, 1));       // true
         System.out.println(containsNearbyDuplicateBruteForce(new int[]{1, 2, 3, 1, 2, 3}, 2)); // false
+
+
+        System.out.println(containsNearbyDuplicate(new int[]{1, 2, 3, 1}, 3));       // true
+        System.out.println(containsNearbyDuplicate(new int[]{1, 0, 1, 1}, 1));       // true
+        System.out.println(containsNearbyDuplicate(new int[]{1, 2, 3, 1, 2, 3}, 2)); // false
     }
+}
 }
