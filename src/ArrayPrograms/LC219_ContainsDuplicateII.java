@@ -37,14 +37,13 @@ public class LC219_ContainsDuplicateII {
 
 
     void main() {
-        System.out.println(containsNearbyDuplicateBruteForce(new int[]{1, 2, 3, 1}, 3));       // true
-        System.out.println(containsNearbyDuplicateBruteForce(new int[]{1, 0, 1, 1}, 1));       // true
-        System.out.println(containsNearbyDuplicateBruteForce(new int[]{1, 2, 3, 1, 2, 3}, 2)); // false
+        System.out.println(containsNearbyDuplicateBruteForce(new int[]{1, 2, 3, 1}, 3));
+        System.out.println(containsNearbyDuplicateBruteForce(new int[]{1, 0, 1, 1}, 1));
+        System.out.println(containsNearbyDuplicateBruteForce(new int[]{1, 2, 3, 1, 2, 3}, 2));
 
 
-        System.out.println(containsNearbyDuplicate(new int[]{1, 2, 3, 1}, 3));       // true
-        System.out.println(containsNearbyDuplicate(new int[]{1, 0, 1, 1}, 1));       // true
-        System.out.println(containsNearbyDuplicate(new int[]{1, 2, 3, 1, 2, 3}, 2)); // false
+        System.out.println(containsNearbyDuplicate(new int[]{1, 2, 3, 1}, 3));
+        System.out.println(containsNearbyDuplicate(new int[]{1, 0, 1, 1}, 1));
+        System.out.println(containsNearbyDuplicate(new int[]{1, 2, 3, 1, 2, 3}, 2));
     }
-}
 }
