@@ -5,39 +5,46 @@ import java.util.Arrays;
 public class LC80_RemoveDuplicatesFromSortedArrayII {
 
     /*
-     * remove duplicates in-place, allow each element at most twice
-     * brute force: use temp array to collect valid elements
-     * 1. count occurrences of each value
-     * 2. copy at most 2 of each into temp
-     * 3. write temp back into nums
-     *
-     * temp array + counting
+     * brute: count each value, copy at most 2 into temp, write back
      * O(n) time, O(n) space
      */
-    static int removeDuplicates(int[] nums) {
+    static int removeDuplicatesBrute(int[] nums) {
         int[] temp = new int[nums.length];
         int index = 0;
-
         for (int i = 0; i < nums.length; ) {
             int count = 0, value = nums[i];
             while (i < nums.length && nums[i] == value) {
                 if (count < 2) temp[index++] = value;
-                count++;
-                i++;
+                count++; i++;
             }
         }
-
         for (int i = 0; i < index; i++) nums[i] = temp[i];
         return index;
     }
 
-    void main() {
-        int[] nums1 = {1, 1, 1, 2, 2, 3};
-        int k1 = removeDuplicates(nums1);
-        System.out.println(Arrays.toString(Arrays.copyOf(nums1, k1))); // [1, 1, 2, 2, 3]
+    /*
+     * optimal: compare nums[i] with nums[k-2], keep if different
+     * O(n) time, O(1) space
+     */
+    static int removeDuplicates(int[] nums) {
+        if (nums.length <= 2) return nums.length;
+        int k = 2;
+        for (int i = 2; i < nums.length; i++)
+            if (nums[i] != nums[k - 2]) nums[k++] = nums[i];
+        return k;
+    }
 
-        int[] nums2 = {0, 0, 1, 1, 1, 1, 2, 3, 3};
-        int k2 = removeDuplicates(nums2);
-        System.out.println(Arrays.toString(Arrays.copyOf(nums2, k2))); // [0, 0, 1, 1, 2, 3, 3]
+    void main() {
+        int[] n1 = {1, 1, 1, 2, 2, 3};
+        int[] n2 = {0, 0, 1, 1, 1, 1, 2, 3, 3};
+
+        System.out.println(Arrays.toString(Arrays.copyOf(n1, removeDuplicatesBrute(n1)))); // [1, 1, 2, 2, 3]
+        System.out.println(Arrays.toString(Arrays.copyOf(n2, removeDuplicatesBrute(n2)))); // [0, 0, 1, 1, 2, 3, 3]
+
+        int[] n3 = {1, 1, 1, 2, 2, 3};
+        int[] n4 = {0, 0, 1, 1, 1, 1, 2, 3, 3};
+
+        System.out.println(Arrays.toString(Arrays.copyOf(n3, removeDuplicates(n3)))); // [1, 1, 2, 2, 3]
+        System.out.println(Arrays.toString(Arrays.copyOf(n4, removeDuplicates(n4)))); // [0, 0, 1, 1, 2, 3, 3]
     }
 }
