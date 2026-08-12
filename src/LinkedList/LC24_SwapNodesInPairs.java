@@ -27,6 +27,30 @@ public class LC24_SwapNodesInPairs {
         return head;
     }
 
+    /*
+     * swap every two adjacent nodes by relinking pointers (optimal)
+     * 1. dummy node before head to simplify edge cases
+     * 2. for each pair: relink prev → second → first → rest
+     * 3. advance prev by 2 nodes
+     *
+     * pointer relinking
+     * O(n) time, O(1) space
+     */
+    static ListNode swapPairs(ListNode head) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode prev = dummy;
+        while (prev.next != null && prev.next.next != null) {
+            ListNode first  = prev.next;
+            ListNode second = prev.next.next;
+            first.next  = second.next;
+            second.next = first;
+            prev.next   = second;
+            prev = first;
+        }
+        return dummy.next;
+    }
+
     static ListNode build(int[] nums) {
         ListNode dummy = new ListNode(0), curr = dummy;
         for (int n : nums) { curr.next = new ListNode(n); curr = curr.next; }
@@ -42,5 +66,8 @@ public class LC24_SwapNodesInPairs {
     void main() {
         System.out.println(print(swapPairsBrute(build(new int[]{1, 2, 3, 4})))); // 2 -> 1 -> 4 -> 3
         System.out.println(print(swapPairsBrute(build(new int[]{1}))));           // 1
+
+        System.out.println(print(swapPairs(build(new int[]{1, 2, 3, 4})))); // 2 -> 1 -> 4 -> 3
+        System.out.println(print(swapPairs(build(new int[]{1}))));           // 1
     }
 }
