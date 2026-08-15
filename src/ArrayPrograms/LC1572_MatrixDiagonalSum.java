@@ -1,4 +1,4 @@
-package Arrays;
+package ArrayPrograms;
 
 public class LC1572_MatrixDiagonalSum {
 
