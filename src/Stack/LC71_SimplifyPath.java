@@ -1,11 +1,24 @@
 package Stack;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
+import java.util.List;
 
 public class LC71_SimplifyPath {
+    // brute force - list as manual stack, join at end | O(n) time | O(n) space
+    static String simplifyPathBrute(String path) {
+        String[] parts = path.split("/");
+        List<String> list = new ArrayList<>();
+        for (String part : parts) {
+            if (part.equals("") || part.equals(".")) continue;
+            else if (part.equals("..")) { if (!list.isEmpty()) list.remove(list.size() - 1); }
+            else list.add(part);
+        }
+        return "/" + String.join("/", list);
+    }
 
-    // O(n) time | O(n) space
+    // optimal - deque stack, insert at front while building result
     static String simplifyPath(String path) {
         Deque<String> stack = new ArrayDeque<>();
         for (String part : path.split("/")) {
