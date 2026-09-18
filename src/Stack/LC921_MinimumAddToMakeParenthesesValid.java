@@ -4,8 +4,8 @@ import java.util.Stack;
 
 public class LC921_MinimumAddToMakeParenthesesValid {
 
-    // stack O(n) time | O(n) space
-    static int minAddToMakeValid(String s) {
+    // stack - O(n) time | O(n) space
+    static int minAddToMakeValidStack(String s) {
         Stack<Character> stack = new Stack<>();
         for (char c : s.toCharArray()) {
             if (c == '(') stack.push(c);
@@ -17,10 +17,24 @@ public class LC921_MinimumAddToMakeParenthesesValid {
         return stack.size();
     }
 
+    // optimal - O(n) time | O(1) space
+    static int minAddToMakeValid(String s) {
+        int open = 0, additions = 0;
+        for (char c : s.toCharArray()) {
+            if (c == '(')      open++;
+            else if (open > 0) open--;
+            else               additions++;
+        }
+        return additions + open;
+    }
+
     void main() {
-        System.out.println(minAddToMakeValid("())"));    // 1
-        System.out.println(minAddToMakeValid("((("));    // 3
-        System.out.println(minAddToMakeValid("()"));     // 0
-        System.out.println(minAddToMakeValid("()))(("));  // 4
+        System.out.println(minAddToMakeValidStack("())"));   // 1
+        System.out.println(minAddToMakeValidStack("((("));   // 3
+
+        System.out.println(minAddToMakeValid("())"));        // 1
+        System.out.println(minAddToMakeValid("((("));        // 3
+        System.out.println(minAddToMakeValid("()"));         // 0
+        System.out.println(minAddToMakeValid("()))(("));     // 4
     }
 }
