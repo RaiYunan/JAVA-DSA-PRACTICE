@@ -17,6 +17,6 @@ public class LC1796_SecondLargestDigitInString {
     void main() {
         System.out.println(secondHighest("dfa12321afd")); // 2
         System.out.println(secondHighest("abc1111"));     // -1
-        System.out.println(secondHighest("sjhtz901"));    // 0 (wait: 9,0,1 → second = 1) // 1
+        System.out.println(secondHighest("sjhtz901"));    // 1
     }
 }
