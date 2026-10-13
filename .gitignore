@@ -16,6 +16,7 @@
 !src/UniqueLCProblems/
 !src/BinaryTrees/
 !src/Math/
+!src/DynamicProgramming/
 
 # Ignore all files inside src/ except ArrayPrograms and BinarySearch folders
 src/*/*
@@ -31,6 +32,7 @@ src/*/*
 !src/UniqueLCProblems/**
 !src/BinaryTrees/**
 !src/Math/**
+!src/DynamicProgramming/**
 
 # IntelliJ IDEA files
 .idea/
