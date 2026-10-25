@@ -17,6 +17,7 @@
 !src/BinaryTrees/
 !src/Math/
 !src/DynamicProgramming/
+!src/Greedy/
 
 # Ignore all files inside src/ except ArrayPrograms and BinarySearch folders
 src/*/*
@@ -33,6 +34,7 @@ src/*/*
 !src/BinaryTrees/**
 !src/Math/**
 !src/DynamicProgramming/**
+!src/Greedy/**
 
 # IntelliJ IDEA files
 .idea/
