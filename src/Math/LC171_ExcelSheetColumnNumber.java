@@ -10,9 +10,20 @@ public class LC171_ExcelSheetColumnNumber {
         return result;
     }
 
+    // optimal - O(n) time | O(1) space
+    static int titleToNumber(String columnTitle) {
+        int result = 0;
+        for (char c : columnTitle.toCharArray()) result = result * 26 + (c - 'A' + 1);
+        return result;
+    }
+
     void main() {
         System.out.println(titleToNumberBrute("A"));    // 1
         System.out.println(titleToNumberBrute("AB"));   // 28
         System.out.println(titleToNumberBrute("ZY"));   // 701
+
+        System.out.println(titleToNumber("A"));         // 1
+        System.out.println(titleToNumber("AB"));        // 28
+        System.out.println(titleToNumber("ZY"));        // 701
     }
 }
